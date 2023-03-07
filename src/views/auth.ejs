@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Authenticate</title>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script>
+            function enableBtn(){
+                document.getElementById("submit_details").disabled = false;
+            }
+        </script>
+        <style>
+            .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+              }
+              
+              /* Style the buttons that are used to open the tab content */
+              .tab button {
+                background-color: green;
+                float: left;
+                border: black;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+              }
+              
+              /* Change background color of buttons on hover */
+              .tab button:hover {
+                background-color: #ddd;
+              }
+              
+              /* Create an active/current tablink class */
+              .tab button.active {
+                background-color: #ccc;
+              }
+              
+              /* Style the tab content */
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+              }
+        </style>
+    </head>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   
+
+    <body>
+     
+        
+        <%if(currentUser){%>
+        
+            <%=currentUser.username%>
+            <a href="/logout">Log Out</a>
+            
+        <%}%>
+
+        <div class="card container" style="width:350px; margin-top:20px;">
+
+            <div class="tab">
+                <button class="tablinks" onclick="$('#register_government_official').hide(); $('#register').show(); $('#login').hide()"> Register as Bidder</button>
+                <button class="tablinks"  onclick="$('#register').hide(); $('#register_government_official').show(); $('#login').hide()">Register as Government Officer</button>
+               
+              </div>
+            
+            <form id="register" class="tabcontent" action="/signupbidder" method="POST" style="display: none">
+                <div class="p-3 mb-2 bg-dark text-white">Register</div>
+                <div style="color: red; size: 10px;"> Personal Details<br></br></div>
+                
+
+                    
+                <label>Email</label>
+                <input class="form-control" name="username" style="margin-bottom:20px" placeholder="abc@example.com">
+
+                <label>Contact Number</label>
+                <input class="form-control" name="contactnumber" type="tel" style="margin-bottom:20px" placeholder="Enter Mobile Number">
+
+                <label>D.O.B</label>
+                <input class="form-control" name="dateofbirth" type="tel" style="margin-bottom:20px" placeholder="Enter your Date of Birth">
+
+                <label class="mr-sm-2" for ="region">Choose Region</label>
+                    <select class="custom-select mr-sm-2" style="margin-bottom:20px" name="region" id="region">
+                        <option value="North India">North India</option>
+                        <option value="South India">South India</option>
+                        <option value="West India">West India</option>
+                        <option value="East India">East India</option>
+                    </select>
+
+
+                <label>Password</label>
+                <input class="form-control" name="password" type="password" style="margin-bottom:20px" placeholder="Keep Strong Passwords">
+
+                <label>Confirm Password</label>
+                <input class="form-control" type="password" style="margin-bottom:20px" placeholder="Retype your password"> <br></br>
+                <script>console.log("testing captcha");</script>
+
+                <div style="color: blue; size: 10px;"> Company Details<br></br></div>
+
+                <label>Company Name / License Holder Name</label>
+                <input class="form-control" name="companyname" type="text" style="margin-bottom:20px" placeholder="Enter your company name">
+
+                <label> Registeration Number</label>
+                <input class="form-control" name="registerationnumber" type="text" style="margin-bottom:20px" placeholder="Enter your registeration number">
+                
+                <label class="mr-sm-2" for ="biddertype">Enter type of bidder</label>
+                    <select class="custom-select mr-sm-2" style="margin-bottom:20px" name="biddertype" id="biddertype">
+                        <option value="Indian">Indian</option>
+                        <option value="Foreigner">Foreigner</option>
+                    </select>
+
+                <label>Pan Number</label>
+                <input class="form-control" name="pannumber" type="text" style="margin-bottom:20px" placeholder="Enter your pan number">
+
+
+
+                
+
+                <div class="g-recaptcha" style="margin-right: 8.5em; padding: 0 7em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableBtn"></div>
+
+                <script>console.log("testing captcha");</script>
+               
+
+                <center>
+                    <input id="submit_details" style="margin-bottom:5px;" type="submit" class="btn btn-success" value="Register" disabled><br>
+                    <font color="blue" size=1 style="cursor:pointer" onclick="$('#register').hide(); $('#login').show();">Already a member? Sign In</font>
+                </center>
+
+            </form>
+
+            <form id="register_government_official" class="tabcontent" action="/signupgovernmentofficial" method="POST" style="display: none">
+                <div class="p-3 mb-2 bg-dark text-white">Register</div>
+                
+                
+
+                <label>Email</label>
+                <input class="form-control" name="username" style="margin-bottom:20px" placeholder="abc@example.com">
+
+                <label>Contact Number</label>
+                <input class="form-control" name="contactnumber" type="tel" style="margin-bottom:20px" placeholder="Enter Mobile Number">
+
+                <label class="mr-sm-2" for ="region">Choose Region</label>
+                    <select class="custom-select mr-sm-2" style="margin-bottom:20px" name="region" id="region">
+                        <option value="North India">North India</option>
+                        <option value="South India">South India</option>
+                        <option value="West India">West India</option>
+                        <option value="East India">East India</option>
+                    </select>
+
+                <label>Government ID Number</label>
+                <input class="form-control" name="governmentidnumber"  type="text" style="margin-bottom:20px" placeholder="Enter your Government ID Number">
+
+
+                <label>Password</label>
+                <input class="form-control" name="password" type="password" style="margin-bottom:20px" placeholder="Keep Strong Passwords">
+
+                <label>Confirm Password</label>
+                <input class="form-control" type="password" style="margin-bottom:20px" placeholder="Retype your password">
+                <script>console.log("testing captcha");</script>
+
+                <script>
+                    function enableLoginBtnGovernmentOfficial(){
+                        document.getElementById("submit_details_governmentofficiallogin").disabled = false;
+                    }
+                </script>
+                <div class="g-recaptcha" style="margin-right: 8.5em; padding: 0 7em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableLoginBtnGovernmentOfficial"></div>
+
+                <script>console.log("testing captcha");</script>
+               
+
+                <center>
+                    <input id="submit_details_governmentofficiallogin" style="margin-bottom:5px;" type="submit" class="btn btn-success" value="Register" disabled><br>
+                    <font color="blue" size=1 style="cursor:pointer" onclick="$('#register_government_official').hide(); $('#login').show();">Already a member? Sign In</font>
+                </center>
+
+            </form>
+
+            <form id="login" action="/signin" method="POST">
+            <div class="p-3 mb-2 bg-dark text-white">Login</div>
+
+                <label>Email</label>
+                <input class="form-control" name="username" style="margin-bottom:20px" placeholder="abc@example.com">
+
+                <label>Password</label>
+                <input class="form-control" name="password" type="password" style="margin-bottom:20px" placeholder="Enter Password">
+                <script>
+                    function enableLoginBtn(){
+                        document.getElementById("submit_details_login").disabled = false;
+                    }
+                </script>
+                <div class="g-recaptcha" style="margin-right: 8.5em; padding: 0 7em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableLoginBtn"></div>
+
+                <center>
+                    <input id="submit_details_login" style="margin-bottom:5px;"  type="submit" class="btn btn-success" value="Log In" disabled><br>
+                    <font color="blue" size=1 style="cursor:pointer" onclick="$('#login').hide(); $('#register').show();">Not a member yet? Register here</font>
+                </center>
+
+            </form>
+
+        </div>
+        
+
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
+    <script type="text/javascript" language="javascript" src="index.js"></script>
+    <script type="text/javascript" language="javascript" src="loadEthereum.js"></script>
+    <script type="text/javascript" language="javascript" src="confirmType.js"></script>
+    <script type="text/javascript" language="javascript" src="truffle-contract.js"></script>
+    <script src="/contract.js"></script>
+
+</html>
