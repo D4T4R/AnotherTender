@@ -60,7 +60,7 @@ App = {
                                             <td>${bid[3]}</td>
                                             <td>${tender[3]}</td>
                                             <td>${bid[4]}</td>
-                                            <td><button onclick=""</button></td>
+                                            <td><button class="w3-button w3-green" style="width:120px;" onclick="">Accept</button></td>
                                             <td>
                                         </tr>`;
       $("#bidList").append(bidTemplate);
