@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js" integrity="sha256-2JRzNxMJiS0aHOJjG+liqsEOuBb6++9cY4dSOyiijX4=" crossorigin="anonymous"></script>
         <style>
+               
             .tab {
                 overflow: hidden;
                 border: 1px solid #ccc;
@@ -144,6 +145,7 @@
    
 
     <body>
+    
      
         
         <%if(currentUser){%>
@@ -189,7 +191,7 @@
                </script>
 
                 <label class="mr-sm-2">Date of Birth <br></br>
-                <input class="form-control" style="margin-bottom:20px margin-left:20px" placeholder="DD MM YYYY" data-provide="datepicker" required="required"/>
+                <input class="form-control" style="margin-bottom:20px; margin-left:20px" placeholder="DD MM YYYY" data-provide="datepicker" required="required"/>
                 </label> <br></br>
 
                 <label class="mr-sm-2" for ="region">Choose Region</label>
@@ -229,7 +231,7 @@
 
                 
 
-                <div class="g-recaptcha" style="display:flex; justify-content:center; margin-left: 16em; padding: 0 17em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableLoginBtn"></div>
+                <div class="g-recaptcha" style="display:flex; justify-content:center; margin-left: 16em; padding: 0 17em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableBtn"></div>
 
                 <script>console.log("testing captcha");</script>
                
@@ -265,7 +267,7 @@
                 <input class="form-control" name="password" type="password" style="margin-bottom:20px" placeholder="Keep Strong Passwords">
 
                 <label>Confirm Password</label>
-                <input class="form-control" type="password" style="margin-bottom:20px" placeholder="Retype your password"><br></br>
+                <input class="form-control" type="password" style="margin-bottom:20px" placeholder="Retype your password"> <br> </br>
                 <script>console.log("testing captcha");</script>
 
                 <script>
@@ -273,7 +275,7 @@
                         document.getElementById("submit_details_governmentofficiallogin").disabled = false;
                     }
                 </script>
-                <div class="g-recaptcha" style="display:flex; justify-content:center; margin-left: 16em; padding: 0 17em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableLoginBtn"></div>
+                <div class="g-recaptcha" style="display:flex; justify-content:center; margin-left: 16em; padding: 0 17em 2em 0" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableLoginBtnGovernmentOfficial"></div>
 
                 <script>console.log("testing captcha");</script>
                
