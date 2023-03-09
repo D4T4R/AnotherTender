@@ -81,14 +81,6 @@ App = {
     },
 
 
-    render1: async () => {
-        if(App.loading) {
-            return;
-        }
-        $('#account').html(App.account);
-        await App.approveBids();
-    },
-
     setLoading: (boolean) => {
         App.loading = boolean;
         const loader = $('#loading');
