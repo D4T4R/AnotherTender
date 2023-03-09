@@ -1,5 +1,5 @@
 App = {
-    
+
     loading:false,
 
     render: async () => {
@@ -60,7 +60,7 @@ App = {
                                             <td>${bid[3]}</td>
                                             <td>${tender[3]}</td>
                                             <td>${bid[4]}</td>
-                                            <td><button class="w3-button w3-green" style="width:120px;" onclick="">Accept</button></td>
+                                            <td><button class="w3-button w3-green" style="width:120px;" onclick="App.approveBids();">Accept</button></td>
                                             <td>
                                         </tr>`;
       $("#bidList").append(bidTemplate);
@@ -71,7 +71,23 @@ App = {
         
  },
 
-    
+    approveBids: async () => {
+        var account = null;
+        var signature = null;
+        var message = "Please sign this";
+        account = App.account;
+        signature = await web3.eth.personal.sign(message, account);
+        alert(" Message signed by " + account + " and the Signature is: " + signature);
+    },
+
+
+    render1: async () => {
+        if(App.loading) {
+            return;
+        }
+        $('#account').html(App.account);
+        await App.approveBids();
+    },
 
     setLoading: (boolean) => {
         App.loading = boolean;
@@ -106,4 +122,8 @@ function showAllBids() {
     $("#tenderList").hide();
     $("#uploadTender").hide();
     $("#listAllBids").show();
+}
+
+function approveBids(){
+    console.log("test");
 }

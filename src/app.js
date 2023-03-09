@@ -165,7 +165,6 @@ app.post("/signupgovernmentofficial",function(req,res){
     var contactnumber=req.body.contactnumber;
     var region=req.body.region;
     var governmentidnumber=req.body.governmentidnumber;
-
     var newOfficer=new User({username: username, type:'false', contactnumber:contactnumber, region:region, governmentidnumber:governmentidnumber});
     User.register(newOfficer,password,function(err,user){
         if(err){
@@ -189,6 +188,7 @@ app.post("/signupbidder",function(req,res){
     var companyname=req.body.companyname;
     var biddertype=req.body.biddertype;
     var pannumber=req.body.pannumber;
+
 
 
     var newBidder=new User({username: username, type:'false', contactnumber:contactnumber, region:region, registerationnumber:registerationnumber, dateofbirth:dateofbirth, biddertype:biddertype, pannumber:pannumber});

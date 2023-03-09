@@ -14,6 +14,7 @@ var officerSchema=new mongoose.Schema({
         allowedValues: ['North India', 'South India', 'West India', 'East India']
     },
     governmentidnumber:Number,
+    
 
 
 
@@ -25,7 +26,7 @@ var bidderSchema=new mongoose.Schema({
     contactnumber:Number,
     password:String,
     type:String,
-    dateofbirth:Number,
+    dateofbirth:Date,
     companyname:String,
     registerationnumber:Number,
     biddertype: {
