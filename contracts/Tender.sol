@@ -89,3 +89,7 @@ contract TenderAuction {
         bids[bidCount] = Bid(bidCount, _tenderId, tenderName, _bid, msg.sender);
     }
 }
+
+
+
+//Testing the code
