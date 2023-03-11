@@ -69,7 +69,7 @@
     
         <center style="margin-bottom:10px;">
             <button class="w3-button w3-green" style="width:150px;" onclick="showAllTenders();">Make a Bid</button>
-            <button class="w3-button w3-blue" style="width:150px;" onclick="showBids();">My Bids</button><br>
+            <button class="w3-button w3-blue" style="width:150px;" onclick="showBids(); showNotif();">My Bids</button><br>
             <!-- <button class="w3-button w3-red" style="width:150px;" onclick="showBids();">Show all Bids</button><br> -->
             <font size=1 color="blue" style="cursor: pointer;" onclick="location.href='/logout'">Not you? Logout here.</font>
         </center>
@@ -86,8 +86,10 @@
             <tr style="text-align:center">
                 <td>Id</td>
                 <td>Tender name</td>
-                <td>Quantity</td>
+                <td>Tender Description</td>
+                <td>Length of road set by Uploader</td>
                 <td>Bid Here</td>
+                <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.showNotif();"></button>Check Status</td>
             </tr>
         </table>
         
@@ -103,7 +105,7 @@
             <tr style="text-align:center">
                 <td>Id</td>
                 <td>Tender name</td>
-                <td>Bid per Item</td>
+                <td>Bid by Bidder</td>
             </tr>
         </table>
 
@@ -119,6 +121,7 @@
 <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
 <script type="text/javascript" language="javascript" src="loadEthereum.js"></script>
 <script type="text/javascript" language="javascript" src="bidderDashboard.js"></script>
+<script type="text/javascript" language="javascript" src="alertbox.js"></script>
 
 </html>
 

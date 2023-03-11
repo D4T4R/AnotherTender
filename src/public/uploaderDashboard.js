@@ -1,5 +1,5 @@
 App = {
-
+    
     loading:false,
 
     render: async () => {
@@ -9,6 +9,7 @@ App = {
         $('#account').html(App.account);
         await App.listMyTenders();
         await App.showAllBids();
+        
     },
 
     listMyTenders: async () => {
@@ -19,6 +20,7 @@ App = {
             if(tender[4] == App.account) {
                 const tenderTemplate = `<tr style="text-align:center">
                                             <td>${tender[0]}</td>
+                                            <td>${tender[1]}</td>
                                             <td>${tender[2]}</td>
                                             <td>${tender[3]}</td>
                                         </tr>`;
@@ -52,15 +54,15 @@ App = {
             const bid = await App.TenderAuction.bids(i);
             console.log("here 3");
            // if(tender[4] == App.account) {
-                console.log("55555");
-                console.log(App.account)
+                console.log("55555");             
                 const bidTemplate = `<tr style="text-align:center">
                                             <td>${bid[0]}</td>
-                                            <td>${tender[2]}</td>
+                                            <td>${tender[1]}</td>
                                             <td>${bid[3]}</td>
                                             <td>${tender[3]}</td>
+                                            <td>${tender[2]}</td>
                                             <td>${bid[4]}</td>
-                                            <td><button class="w3-button w3-green" style="width:120px;" onclick="App.approveBids();">Accept</button></td>
+                                            <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.approveBids();">Accept Bids</button></td>
                                             <td>
                                         </tr>`;
       $("#bidList").append(bidTemplate);
@@ -71,15 +73,24 @@ App = {
         
  },
 
-    approveBids: async () => {
-        var account = null;
-        var signature = null;
-        var message = "Please sign this";
-        account = App.account;
-        signature = await web3.eth.personal.sign(message, account);
-        alert(" Message signed by " + account + " and the Signature is: " + signature);
-    },
+ approveBids: async () => {
+    var account = null;
+    var signature = null;
+    var displaysig = null;
+    var message = "Please sign this";
+    account = App.account;
+    signature = await web3.eth.personal.sign(message, account);
+    displaysig = signature.substring(0,50);
+    customAlert.alert(" Message signed by \n " + account + " and the Signature is: \n \n \n" + displaysig);
+    console.log(signature);
+},
 
+
+
+
+ 
+
+    
 
     setLoading: (boolean) => {
         App.loading = boolean;
@@ -117,5 +128,7 @@ function showAllBids() {
 }
 
 function approveBids(){
-    console.log("test");
+    console.log("here is alert");
+    
+  
 }

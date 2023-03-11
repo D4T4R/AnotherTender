@@ -20,6 +20,7 @@ App = {
             const tenderTemplate = `<tr style="text-align:center">
                                         <td>${tender[0]}</td>
                                         <td>${tender[1]}</td>
+                                        <td>${tender[2]}</td>
                                         <td>${tender[3]}</td>
                                         <td><button onclick="popup('${tender[0]}')" class="btn btn-success">Bid</button></td>
                                     <tr>`;
@@ -33,8 +34,8 @@ App = {
                                             <div style="margin-top:20px; width: 550px;" class="container card w3-section">
                                                 
                                                 <span><b>Tender ID: </b>${tender[0]}</span>
-                                                <span><b>Tender: </b>${tender[1]}</span>
-                                                <span><b>Quantity: </b>${tender[3]}</span>
+                                                <span><b>Tender Name: </b>${tender[1]}</span>
+                                                <span><b>Length of road to be Constructed : </b>${tender[3]}</span>
                                                 <span><b>Uploader Address: </b>${tender[4]}</span>
 
                                                 <hr>
@@ -63,7 +64,6 @@ App = {
                                             <td>${bid[0]}</td>
                                             <td>${bid[2]}</td>
                                             <td>${bid[3]}</td>
-                                            <td>
                                         </tr>`;
                 $("#myBids").append(bidTemplate);
             }
@@ -76,6 +76,14 @@ App = {
         App.TenderAuction.createBid(id, bid, {from:App.account});
     },
 
+showNotif: async () => {
+    var account = null;
+    signature = null;
+    account = App.account;
+    signature = await (App.approveBids.signature);
+},
+    
+    
     setLoading: (boolean) => {
         App.loading = boolean;
         const loader = $('#loading');
@@ -100,6 +108,11 @@ function showAllTenders() {
 function showBids() {
     $("#bidList").show();
     $("#listAllTenders").hide();
+}
+
+function showNotif() {
+    alert(" Your bid has been accepted, and the Signature is: ");
+    console.log("test");
 }
 
 function popup(id) {
