@@ -30,21 +30,17 @@ App = {
                                             <br><br><br>
                                             
                                             <span onclick="div_hide('${tender[0]}')" style="float:right" class="x">X</span>
-
                                             <div style="margin-top:20px; width: 550px;" class="container card w3-section">
                                                 
                                                 <span><b>Tender ID: </b>${tender[0]}</span>
                                                 <span><b>Tender Name: </b>${tender[1]}</span>
                                                 <span><b>Length of road to be Constructed : </b>${tender[3]}</span>
                                                 <span><b>Uploader Address: </b>${tender[4]}</span>
-
                                                 <hr>
-
                                                 <center style="margin-bottom:10px;">
                                                     <input class="form-control" type="number" style="margin-bottom:10px;" id="ppi${tender[0]}" placeholder="Price per Item">
                                                     <button class="w3-button w3-green" style="width:150px;" onclick="App.makeBid(${tender[0]});">Make a Bid</button>
                                                 </center>
-
                                             </div>
                                             
                                         </div>`
@@ -64,6 +60,7 @@ App = {
                                             <td>${bid[0]}</td>
                                             <td>${bid[2]}</td>
                                             <td>${bid[3]}</td>
+                                            <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.showNotif();">Check Status</button></td>
                                         </tr>`;
                 $("#myBids").append(bidTemplate);
             }
@@ -80,7 +77,8 @@ showNotif: async () => {
     var account = null;
     signature = null;
     account = App.account;
-    signature = await (App.approveBids.signature);
+    //signature = await (App.approveBids.signature);
+    customAlert.alert(" Your bid has been accepted, and the Signature is: ");
 },
     
     
@@ -111,7 +109,7 @@ function showBids() {
 }
 
 function showNotif() {
-    alert(" Your bid has been accepted, and the Signature is: ");
+    console.log("notif");
     console.log("test");
 }
 
