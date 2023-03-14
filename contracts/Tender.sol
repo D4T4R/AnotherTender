@@ -31,6 +31,8 @@ contract TenderAuction {
         string itemName;
         string itemDescription;
         uint quantity;
+        string area;
+        //uint deadline;
         address userHash;
     }
 
@@ -61,7 +63,7 @@ contract TenderAuction {
         for(uint i = 1; i <= bidderCount; i++) {
             if(whoIsBidder[i] == _address) {
                 require(1 == 2, "Address already present");
-            }
+            }   
         }
         _;
     }
@@ -78,9 +80,9 @@ contract TenderAuction {
         bidders[msg.sender] = Bidder(bidderCount, _username);
     }
 
-    function createTender(string memory _itemName, string memory _itemDescription, uint _quantity) public {
+    function createTender(string memory _itemName, string memory _itemDescription, uint _quantity, string memory _area /*uint _deadline*/) public {
         tenderCount++;
-        tenders[tenderCount] = Tender(tenderCount, _itemName, _itemDescription, _quantity, msg.sender);
+        tenders[tenderCount] = Tender(tenderCount, _itemName, _itemDescription, _quantity, _area, /*_deadline,*/ msg.sender);
     }
 
     function createBid(uint _tenderId, uint _bid) public {

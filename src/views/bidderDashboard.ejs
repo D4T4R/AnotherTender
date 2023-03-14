@@ -55,15 +55,13 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+
     @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-
 /* ---------------Animation---------------- */
-
         .slit-in-vertical {
             -webkit-animation: slit-in-vertical 0.45s ease-out both;
                     animation: slit-in-vertical 0.45s ease-out both;
         }
-
         @-webkit-keyframes slit-in-vertical {
         0% {
             -webkit-transform: translateZ(-800px) rotateY(90deg);
@@ -96,9 +94,7 @@
                     transform: translateZ(0) rotateY(0);
         }
         }
-
         /*---------------#region Alert--------------- */
-
         #dialogoverlay{
         display: none;
         opacity: .8;
@@ -109,7 +105,6 @@
         width: 100%;
         z-index: 10;
         }
-
         #dialogbox{
         display: none;
         position: absolute;
@@ -124,15 +119,12 @@
         right: 0;
         margin: auto;
         }
-
         #dialogbox:hover {
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.911);
         }
-
         .container {
         padding: 2px 16px;
         }
-
         .pure-material-button-contained {
         position: relative;
         display: inline-block;
@@ -159,13 +151,10 @@
         cursor: pointer;
         transition: box-shadow 0.2s;
         }
-
         .pure-material-button-contained::-moz-focus-inner {
         border: none;
         }
-
         /* ---------------Overlay--------------- */
-
         .pure-material-button-contained::before {
         content: "";
         position: absolute;
@@ -177,7 +166,6 @@
         opacity: 0;
         transition: opacity 0.2s;
         }
-
         /* Ripple */
         .pure-material-button-contained::after {
         content: "";
@@ -193,36 +181,29 @@
         transform: translate(-50%, -50%) scale(1);
         transition: opacity 1s, transform 0.5s;
         }
-
         /* Hover, Focus */
         .pure-material-button-contained:hover,
         .pure-material-button-contained:focus {
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
         }
-
         .pure-material-button-contained:hover::before {
         opacity: 0.08;
         }
-
         .pure-material-button-contained:focus::before {
         opacity: 0.24;
         }
-
         .pure-material-button-contained:hover:focus::before {
         opacity: 0.3;
         }
-
         /* Active */
         .pure-material-button-contained:active {
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
         }
-
         .pure-material-button-contained:active::after {
         opacity: 0.32;
         transform: translate(-50%, -50%) scale(0);
         transition: transform 0s;
         }
-
         /* Disabled */
         .pure-material-button-contained:disabled {
         color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
@@ -230,20 +211,16 @@
         box-shadow: none;
         cursor: initial;
         }
-
         .pure-material-button-contained:disabled::before {
         opacity: 0;
         }
-
         .pure-material-button-contained:disabled::after {
         opacity: 0;
         }
-
         #dialogbox > div{ 
         background:#FFF; 
         margin:8px; 
         }
-
         #dialogbox > div > #dialogboxhead{ 
         background: rgb(0, 77, 70); 
         font-size:19px; 
@@ -251,14 +228,12 @@
         color:rgb(255, 255, 255); 
         font-family: Verdana, Geneva, Tahoma, sans-serif ;
         }
-
         #dialogbox > div > #dialogboxbody{ 
         background:rgb(0, 47, 43); 
         padding:20px; 
         color:#FFF; 
         font-family: Verdana, Geneva, Tahoma, sans-serif ;
         }
-
         #dialogbox > div > #dialogboxfoot{ 
         background: rgb(0, 47, 43); 
         padding:10px; 
@@ -280,7 +255,7 @@
     
         <center style="margin-bottom:10px;">
             <button class="w3-button w3-green" style="width:150px;" onclick="showAllTenders();">Make a Bid</button>
-            <button class="w3-button w3-blue" style="width:150px;" onclick=" showBids(); ">My Bids</button><br>
+            <button class="w3-button w3-blue" style="width:150px;" onclick="showBids(); ">My Bids</button><br>
             <!-- <button class="w3-button w3-red" style="width:150px;" onclick="showBids();">Show all Bids</button><br> -->
             <font size=1 color="blue" style="cursor: pointer;" onclick="location.href='/logout'">Not you? Logout here.</font>
         </center>
@@ -298,8 +273,11 @@
                 <td>Id</td>
                 <td>Tender name</td>
                 <td>Tender Description</td>
-                <td>Length of road set by Uploader</td>
+                <td>Length of Road</td>
+                <td>Landmark Area</td>
                 <td>Bid Here</td>
+
+                
             </tr>
         </table>
         
@@ -316,7 +294,7 @@
                 <td>Id</td>
                 <td>Tender name</td>
                 <td>Bid by Bidder</td>
-                <td>Bid Status</td>
+                <td>Check Status</td>
             </tr>
         </table>
 
@@ -324,7 +302,49 @@
     <br>
 
     <div id="tenderPopup"></div>
+    <script type="module">
 
+        // Import the functions you need from the SDKs you need
+      
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+      
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+      
+        // TODO: Add SDKs for Firebase products that you want to use
+      
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+      
+        // Your web app's Firebase configuration
+      
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      
+        const firebaseConfig = {
+      
+          apiKey: "AIzaSyBLY1pi24fPHvV8sqZrz_C5rgpN5en9BKI",
+      
+          authDomain: "anothertender.firebaseapp.com",
+      
+          projectId: "anothertender",
+      
+          storageBucket: "anothertender.appspot.com",
+      
+          messagingSenderId: "1092532465044",
+      
+          appId: "1:1092532465044:web:a07877a11cc61926907381",
+      
+          measurementId: "G-V9H2CR3TWV"
+      
+        };
+      
+      
+        // Initialize Firebase
+      
+        const app = initializeApp(firebaseConfig);
+      
+        const analytics = getAnalytics(app);
+      
+      </script>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

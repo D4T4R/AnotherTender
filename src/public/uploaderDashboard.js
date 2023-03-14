@@ -23,6 +23,8 @@ App = {
                                             <td>${tender[1]}</td>
                                             <td>${tender[2]}</td>
                                             <td>${tender[3]}</td>
+                                            <td>${tender[4]}</td>      
+                                            <!--<td>${tender[5]}</td> -->     
                                         </tr>`;
                 $("#mytenders").append(tenderTemplate);
             }
@@ -34,9 +36,12 @@ App = {
         const itemName = $("#itemName").val();
         const itemDesc = $("#itemDesc").val();
         const itemQuantity = $("#itemQuantity").val();
+        const area = $("#area").val();
+        //const deadline = $('#deadline').val().replace('/', '');
+
 
         try{
-            await App.TenderAuction.createTender(itemName, itemDesc, itemQuantity, {from:App.account});
+            await App.TenderAuction.createTender(itemName, itemDesc, itemQuantity, area, /*deadline,*/ {from:App.account});
             window.location.reload();
         }catch{
             window.location.reload();
@@ -47,42 +52,78 @@ App = {
      
         console.log("hello world");
         const bidCount = await App.TenderAuction.bidCount();
-        console.log("bid count is : " + App.TenderAuction.bidCount);
         for(i = 1; i <= bidCount; i++) {
             console.log("here 2");
             const tender = await App.TenderAuction.tenders(i);
             const bid = await App.TenderAuction.bids(i);
-            console.log("here 3");
+            console.log(bid);
+            localStorage.setItem("Bidaccepted" , tender[1] );
+            let acceptedtendername = localStorage.getItem('Bidaccepted')
            // if(tender[4] == App.account) {
                 console.log("55555");             
                 const bidTemplate = `<tr style="text-align:center">
-                                            <td>${bid[0]}</td>
+                                            <td class="idclass">${bid[0]}</td>
                                             <td>${tender[1]}</td>
                                             <td>${bid[3]}</td>
                                             <td>${tender[3]}</td>
                                             <td>${tender[2]}</td>
                                             <td>${bid[4]}</td>
+                                            <td>${tender[4]}</td>
                                             <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.approveBids();">Accept Bids</button></td>
                                             <td>
                                         </tr>`;
+                var idnumber = [];
+                idnumber.push(bid[0]);
+                console.log(idnumber);
       $("#bidList").append(bidTemplate);
-                console.log("ehllo3");
+      
             //}
         }
+        
         
         
  },
 
  approveBids: async () => {
+    /*const $idnumber = $(this).closest("tr")   // Finds the closest row <tr> 
+    .find(".idclass")     // Gets a descendent with class="nr"
+    .text();         // Retrieves the text wireathin <td>
+    console.log("id number is " + $idnumber);*/
+    // let idclass = $(this).closest("tr");
+    //     /*let inum = document.getElementById(bid[0]);
+    //     console.log(inum);*/
+
+    //     localStorage.answer = JSON.stringify($idnumber);
+    //     let saved = CircularJSON.parse(localStorage.answer);
+    //     console.log( saved === $idSnumber ); // trues
+
+    //     console.log("id number is w12313131 " + $idnumber);
+    //                 console.log("ehllo3");
     var account = null;
     var signature = null;
     var displaysig = null;
-    var message = "Bid Details : \n \n #bidlist";
+    var message = "Please sign this";
     account = App.account;
     signature = await web3.eth.personal.sign(message, account);
     displaysig = signature.substring(0,50);
     customAlert.alert(" Message signed by \n " + account + " and the Signature is: \n \n \n" + displaysig);
-    console.log(signature);
+    localStorage.clear();
+    localStorage.setItem("Signaturestorage" , signature);
+    
+    let checksign = localStorage.getItem('Signaturestorage');
+    
+    console.log("here is check" + checksign);
+    console.log("here is check for name" + acceptedtendername);
+
+
+
+   
+        
+          // Outputs the answer
+          
+
+ 
+    
 },
 
 
