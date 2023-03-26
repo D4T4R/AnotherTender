@@ -17,14 +17,14 @@ App = {
         console.log("My tenders");
         for(i = 1; i <= tenderCount; i++) {
             const tender = await App.TenderAuction.tenders(i);
-            if(tender[4] == App.account) {
+            if(tender[5] == App.account) {
                 const tenderTemplate = `<tr style="text-align:center">
                                             <td>${tender[0]}</td>
                                             <td>${tender[1]}</td>
                                             <td>${tender[2]}</td>
                                             <td>${tender[3]}</td>
                                             <td>${tender[4]}</td>      
-                                            <!--<td>${tender[5]}</td> -->     
+                                            <td>${tender[6]}</td>     
                                         </tr>`;
                 $("#mytenders").append(tenderTemplate);
             }
@@ -155,7 +155,6 @@ function uploadTenders() {
 }
 
 function showTenders() {
-    $("#listAllBids").hide();
     $("#tenderList").show();
     $("#uploadTender").hide();
     $("#listAllBids").hide();

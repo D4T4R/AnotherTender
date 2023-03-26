@@ -7049,10 +7049,16 @@
       "links": {},
       "address": "0xA7feD500E17e8B8673773a21FEbf8924e066a51D",
       "transactionHash": "0x04aedb267dde33692d2509200d1197c12b8778f6fd6667678f35a7a009c084ff"
+    },
+    "1679764247804": {
+      "events": {},
+      "links": {},
+      "address": "0xCCC346e65dfC26bb85DF76eceF0BCA650F6C36B1",
+      "transactionHash": "0x2f1145dd742ee25d2d035ffb4e6f302e0629abb92ead00ae4ec143b28ba492cf"
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-03-14T15:31:10.960Z",
+  "updatedAt": "2023-03-25T17:11:01.695Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
