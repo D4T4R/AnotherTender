@@ -17,7 +17,7 @@ App = {
         console.log("My tenders");
         for(i = 1; i <= tenderCount; i++) {
             const tender = await App.TenderAuction.tenders(i);
-            if(tender[5] == App.account) {
+            if(tender[6] == App.account) {
                 const tenderTemplate = `<tr style="text-align:center">
                                             <td>${tender[0]}</td>
                                             <td>${tender[1]}</td>
@@ -37,15 +37,18 @@ App = {
         const itemDesc = $("#itemDesc").val();
         const itemQuantity = $("#itemQuantity").val();
         const area = $("#area").val();
-        //const deadline = $('#deadline').val().replace('/', '');
-
+        const deadline = $('#deadline').val();
+        console.log(deadline);
+        const deadline1 = deadline.replaceAll('-', '');     
+        console.log(deadline1);
 
         try{
-            await App.TenderAuction.createTender(itemName, itemDesc, itemQuantity, area, /*deadline,*/ {from:App.account});
+            await App.TenderAuction.createTender(itemName, itemDesc, itemQuantity, area, deadline1, {from:App.account});
             window.location.reload();
         }catch{
             window.location.reload();
         }
+        console.log(deadline);
     },
 
     showAllBids: async () => {
