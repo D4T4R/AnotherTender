@@ -23,6 +23,7 @@ App = {
                                         <td>${tender[2]}</td>
                                         <td>${tender[3]}</td>
                                         <td>${tender[4]}</td>
+                                        <td>${tender[5]}</td>
                                         <td><button onclick="popup('${tender[0]}')" class="btn btn-success">Bid</button></td>
                                         
                                     <tr>`;
