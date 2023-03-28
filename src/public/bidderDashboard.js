@@ -39,7 +39,7 @@ App = {
                                                 <span><b>Tender ID: </b>${tender[0]}</span>
                                                 <span><b>Tender Name: </b>${tender[1]}</span>
                                                 <span><b>Length of road to be Constructed : </b>${tender[3]}</span>
-                                                <span><b>Uploader Address: </b>${tender[4]}</span>
+                                                <span><b>Uploader Address: </b>${tender[6]}</span>
 
                                                 <hr>
 
