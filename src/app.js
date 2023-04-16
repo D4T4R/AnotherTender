@@ -13,6 +13,7 @@ var window              = new Window();
 
 const tenderJSON        = require('../build/contracts/TenderAuction.json')
 const truffleContract   = require('truffle-contract');
+const consolidate       = require('consolidate');
 
 var User                = require("./models/user");
 
@@ -32,6 +33,10 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(bodyParser.urlencoded({extended:true}));
 
+
+app.engine('html', consolidate.swig);
+app.set('view engine', 'html');
+app.engine('ejs', require('ejs').renderFile);
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
@@ -72,7 +77,7 @@ app.get('/authenticate', (req,res) => {
     if(req.user) {
         res.redirect('/');
     }else {
-        res.render('auth.ejs');
+        res.render('auth1.ejs');
     }
 });
 
