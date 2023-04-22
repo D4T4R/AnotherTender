@@ -59,6 +59,11 @@ App = {
             console.log("here 2");
             const tender = await App.TenderAuction.tenders(i);
             const bid = await App.TenderAuction.bids(i);
+             var   tendernameacceptedstorage = tender[1];
+             var abcd = tender[1];
+             var efgh = bid[3];
+
+             console.log(">>>>>>>>>>>>>>>>>>" + tender[1]);
             console.log(bid);
             localStorage.setItem("Bidaccepted" , tender[1] );
             let acceptedtendername = localStorage.getItem('Bidaccepted')
@@ -72,7 +77,7 @@ App = {
                                             <td>${tender[2]}</td>
                                             <td>${bid[4]}</td>
                                             <td>${tender[4]}</td>
-                                            <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.approveBids();">Accept Bids</button></td>
+                                            <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.approveBids('${abcd}' , '${efgh}') " >Accept Bids</button></td>
                                             <td>
                                         </tr>`;
                 var idnumber = [];
@@ -87,7 +92,7 @@ App = {
         
  },
 
- approveBids: async () => {
+ approveBids: async (val , val1  ) => {
     /*const $idnumber = $(this).closest("tr")   // Finds the closest row <tr> 
     .find(".idclass")     // Gets a descendent with class="nr"
     .text();         // Retrieves the text wireathin <td>
@@ -102,22 +107,30 @@ App = {
 
     //     console.log("id number is w12313131 " + $idnumber);
     //                 console.log("ehllo3");
+    localStorage.removeItem("bidvalueuse");
     var account = null;
     var signature = null;
+    var tendername = null;
     var displaysig = null;
+    var tendernameuse = val;
+    var bidvalue = val1;
     var message = "Please sign this";
     account = App.account;
     signature = await web3.eth.personal.sign(message, account);
     displaysig = signature.substring(0,50);
     customAlert.alert(" Message signed by \n " + account + " and the Signature is: \n \n \n" + displaysig);
-    localStorage.clear();
+  
     localStorage.setItem("Signaturestorage" , signature);
-    
-    let checksign = localStorage.getItem('Signaturestorage');
-    
-    console.log("here is check" + checksign);
-    console.log("here is check for name" + acceptedtendername);
+    localStorage.setItem("TenderName"  , tendername);
 
+   
+    let checksign = localStorage.getItem('Signaturestorage');
+    console.log("bid value checking here" + bidvalue);
+    console.log("here is check" + checksign);
+    //console.log("here is check for name" + acceptedtendername);
+    console.log("project %%%%%%%%%%%%%%%%%%%%%" + tendernameuse);
+    localStorage.setItem("usethisfortendername" , tendernameuse);
+    localStorage.setItem("bidvalueuse" , bidvalue);
 
 
    

@@ -38,13 +38,13 @@ App = {
                                                 
                                                 <span><b>Tender ID: </b>${tender[0]}</span>
                                                 <span><b>Tender Name: </b>${tender[1]}</span>
-                                                <span><b>Length of road to be Constructed : </b>${tender[3]}</span>
+                                                <span><b>Length of road to be Constructed (km) : </b>${tender[3]}</span>
                                                 <span><b>Uploader Address: </b>${tender[6]}</span>
 
                                                 <hr>
 
                                                 <center style="margin-bottom:10px;">
-                                                    <input class="form-control" type="number" style="margin-bottom:10px;" id="ppi${tender[0]}" placeholder="Price per Item">
+                                                    <input class="form-control" type="number" style="margin-bottom:10px;" id="ppi${tender[0]}" placeholder="Bid Price for Tender">
                                                     <button class="w3-button w3-green" style="width:150px;" onclick="App.makeBid(${tender[0]});">Make a Bid</button>
                                                 </center>
 
@@ -58,16 +58,20 @@ App = {
     },
 
     listMyBids: async () => {
+        
         const bidCount = await App.TenderAuction.bidCount();
         for(i = 1; i <= bidCount; i++) {
             const bid = await App.TenderAuction.bids(i); 
             if(bid[4] == App.account) {
                 console.log(App.account)
+                var checkbiddername = bid[2];
+                var checkbidvalue = null;
+                checkbidvalue = bid[3];
                 const bidTemplate = `<tr style="text-align:center">
                                             <td>${bid[0]}</td>
                                             <td>${bid[2]}</td>
                                             <td>${bid[3]}</td>
-                                            <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.showNotif();">Check Status</button></td>
+                                            <td><button class="w3-button w3-green" style="width:120px; height: 50px;" onclick="App.showNotif('${checkbiddername}' , '${checkbidvalue}');">Check Status</button></td>
                                         </tr>`;
                 $("#myBids").append(bidTemplate);
             }
@@ -80,7 +84,7 @@ App = {
         App.TenderAuction.createBid(id, bid, {from:App.account});
     },
 
-showNotif: async () => {
+showNotif: async (val , val1) => {
     // var account = null;
     // signature = null;
     // account = App.account;
@@ -88,16 +92,45 @@ showNotif: async () => {
     // customAlert.alert(" Your bid has been accepted, and the Signature is: ");
 
     let checksign = localStorage.getItem('Signaturestorage');
+    var useforcomparebidname = val;
+    var checkbidvalueuse = val1;
+    let checknamecompare = localStorage.getItem('usethisfortendername');
+    let checkbidvaluecompare = localStorage.getItem('bidvalueuse');
 
-    if(checksign == null){
+    console.log("checking for last step" + useforcomparebidname);
+    console.log("same as above" + checknamecompare);
+    console.log("checking for bid value" + checkbidvalueuse)
+    console.log("check bid value " + checkbidvaluecompare);
+
+    // if(checknamecompare != useforcomparebidname){
+    //     customAlert.alert(" Your bid is still being processed");
+    // }
+     if(checknamecompare == useforcomparebidname && checkbidvalueuse == checkbidvaluecompare){
+        customAlert.alert(" Your bid has been accepted, and the Signature is (Comparison done 1 ) : " + checksign.substring(0,50))
+    }
+
+    else if(checknamecompare == null && checkbidvalueuse == checkbidvaluecompare){
+        customAlert.alert(" Your bid has been accepted, and the Signature is (Comparison done 2 ) : " + checksign.substring(0,50))
+    }
+
+    else if(checknamecompare == null && checkbidvalueuse == null){
+        customAlert.alert(" Your bid has been accepted, and the Signature is (Comparison done 3 ) : " + checksign.substring(0,50))
+    }
+
+    else if(checknamecompare != useforcomparebidname){
         customAlert.alert(" Your bid is still being processed");
     }
+    
+
+
     else{
-        customAlert.alert(" Your bid has been accepted, and the Signature is: " + checksign.substring(0,50));
+        // customAlert.alert(" Your bid has been accepted, and the Signature is: " + checksign.substring(0,50));
+
+        customAlert.alert("error occured try again");
     }
    
     console.log("test");
-    localStorage.clear();
+  
 
 },
     

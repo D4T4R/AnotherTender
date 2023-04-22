@@ -76,9 +76,14 @@ app.get('/', (req,res) => {
 app.get('/authenticate', (req,res) => {
     if(req.user) {
         res.redirect('/');
-    }else {
-        res.render('auth1.ejs');
     }
+    else{
+        res.render('authnew.ejs');
+    }
+});
+
+app.get('/signup', function(req, res) {
+   res.render('signup.ejs');
 });
 
 app.get('/confirmType', (req,res) => {

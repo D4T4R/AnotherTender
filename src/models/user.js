@@ -1,4 +1,5 @@
 const { options } = require("mongoose");
+const { Number } = require("mongoose");
 var mongoose                =require("mongoose");
 var passportLocalMongoose   =require("passport-local-mongoose");
 
@@ -26,7 +27,7 @@ var bidderSchema=new mongoose.Schema({
     contactnumber:Number,
     password:String,
     type:String,
-    dateofbirth:Date,
+    dateofbirth:Number,
     companyname:String,
     registerationnumber:Number,
     biddertype: {

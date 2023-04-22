@@ -385,8 +385,7 @@
 </style>
 
 <body>
-    
-    <div style="margin-top:900px; width: 650px;"  class="container card w3-section">
+    <div style="margin-top:20px; width: 650px;" class="container card w3-section">
 
         <span><b>Address: </b><font id="account" size=2></font></span>
         <span><b>Username: </b><font id="username" size=2><%=currentUser.username%></font></span>      
@@ -415,9 +414,9 @@
 
                     <span><b>Tender Description</b><textarea class="form-control" id="itemDesc" ></textarea></span><br>
 
-                    <span><b>Length of road to be Constructed</b><input class="form-control" type="number" id="itemQuantity"></span><br>
+                    <span><b>Length of road to be Constructed (km) </b><input class="form-control" type="number" id="itemQuantity"></span><br>
 
-                    <span><b>Landmark Address</b><input class="form-control" type="landmark" id="area"></span><br>
+                    <span><b>Starting point - Ending point</b><input class="form-control" type="landmark" id="area" placeholder="starting point - ending point" ></span><br>
 
                     <span><b>Last date of Bidding</b><input class="form-control" type="date" id="deadline" placeholder="Last Date for Bidding" required="required"></span><br>
 
@@ -449,8 +448,8 @@
                 <td>Id</td>
                 <td>Tender name</td>
                 <td>Tender Description</td>
-                <td>Length of Road to be Constructed</td>
-                <td>Landmark Area</td>
+                <td>Length of Road to be Constructed (km)</td>
+                <td>Starting point - Ending point</td>
                 <td>Last Date of Bidding</td>
             </tr>
         </table>
@@ -469,10 +468,10 @@
                 <td>Id</td>
                 <td>Tender name</td>
                 <td>Bid by bidder</td>
-                <td>Length of road set by uploader</td>
+                <td>Length of road set by uploader (km) </td>
                 <td>Tender Description</td>
                 <td>Bidder public address</td>
-                <td>Landmark area</td>
+                <td>Starting point - Ending point</td>
                 <td>Accept contracts</td>
             </tr>
         </table>
