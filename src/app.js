@@ -69,7 +69,7 @@ app.get('/', (req,res) => {
             res.redirect('/confirmType');
         }
     }else {
-        res.redirect('/authenticate');
+        res.redirect('/landing');
     }
 });
 
@@ -85,6 +85,11 @@ app.get('/authenticate', (req,res) => {
 app.get('/signup', function(req, res) {
    res.render('signup.ejs');
 });
+
+app.get('/landing', function(req, res) {
+   res.render('landing.ejs');
+});
+
 
 app.get('/confirmType', (req,res) => {
     if(req.user) {
@@ -224,7 +229,7 @@ app.post("/signin",passport.authenticate("local",{
 //USER LOG OUT
 app.get("/logout",function(req,res){
     req.logout();
-    res.redirect("/");
+    res.redirect("/authenticate");
 });
 
 app.listen(3000, () => {

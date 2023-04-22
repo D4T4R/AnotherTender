@@ -2,6 +2,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authenticate</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+      function enableloginBtn(){
+          document.getElementById("submit_details_login").disabled = false;
+      }
+    </script>
     <script src="https://kit.fontawesome.com/c0078485ae.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type"text/css" href="mian.css">
     <style>
@@ -304,6 +310,7 @@ function remcl() {
                     <div class="div">
                         <input class="input" name="password" type="password" style="color:black"; placeholder="Password">
                     </div>
+                    <div class="g-recaptcha" style="display:flex; justify-content:center; margin-left: 10.7em; margin-top:30px; margin-bottom:35px; width:20px;" data-type="image" data-sitekey="6LejFMIkAAAAAOEOyVHbB9FCTot_a7NbqUNsdawL" data-callback="enableloginBtn" required="required"></div>
                 </div>
                 <script>
                     function enableLoginBtn(){
@@ -312,7 +319,8 @@ function remcl() {
                 </script>
                 <center>
                     <input id="submit_details_login" style="margin-bottom:5px; cursor:pointer"  type="submit" class="btn btn-success" value="Log In"><br>
-                    <font color="blue" size=3 >Not a member yet? Register here</font>
+                    <font color="blue" size=4 >Not a member yet? Register here ↓ </font>
+                    <br></br>
                 </center>
 
                 <input type="button" class="btn" href="#" style="cursor:pointer" onclick="chigger();" value="Register">
