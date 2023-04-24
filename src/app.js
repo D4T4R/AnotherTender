@@ -90,6 +90,10 @@ app.get('/landing', function(req, res) {
    res.render('landing.ejs');
 });
 
+app.get('/notfound', function(req, res) {
+   res.render('notfound.ejs');
+});
+
 
 app.get('/confirmType', (req,res) => {
     if(req.user) {
@@ -221,7 +225,7 @@ app.post("/signupbidder",function(req,res){
 //USER LOG IN
 app.post("/signin",passport.authenticate("local",{
     successRedirect: "/",
-    failureRedirect: "/"
+    failureRedirect: "/notfound"
 }),function(req,res){
 
 });
