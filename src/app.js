@@ -13,6 +13,7 @@ var window              = new Window();
 
 const tenderJSON        = require('../build/contracts/TenderAuction.json')
 const truffleContract   = require('truffle-contract');
+const consolidate       = require('consolidate');
 
 var User                = require("./models/user");
 
@@ -32,6 +33,10 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(bodyParser.urlencoded({extended:true}));
 
+
+app.engine('html', consolidate.swig);
+app.set('view engine', 'html');
+app.engine('ejs', require('ejs').renderFile);
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
@@ -64,17 +69,31 @@ app.get('/', (req,res) => {
             res.redirect('/confirmType');
         }
     }else {
-        res.redirect('/authenticate');
+        res.redirect('/landing');
     }
 });
 
 app.get('/authenticate', (req,res) => {
     if(req.user) {
         res.redirect('/');
-    }else {
-        res.render('auth.ejs');
+    }
+    else{
+        res.render('authnew.ejs');
     }
 });
+
+app.get('/signup', function(req, res) {
+   res.render('signup.ejs');
+});
+
+app.get('/landing', function(req, res) {
+   res.render('landing.ejs');
+});
+
+app.get('/notfound', function(req, res) {
+   res.render('notfound.ejs');
+});
+
 
 app.get('/confirmType', (req,res) => {
     if(req.user) {
@@ -206,7 +225,7 @@ app.post("/signupbidder",function(req,res){
 //USER LOG IN
 app.post("/signin",passport.authenticate("local",{
     successRedirect: "/",
-    failureRedirect: "/"
+    failureRedirect: "/notfound"
 }),function(req,res){
 
 });
@@ -214,9 +233,9 @@ app.post("/signin",passport.authenticate("local",{
 //USER LOG OUT
 app.get("/logout",function(req,res){
     req.logout();
-    res.redirect("/");
+    res.redirect("/authenticate");
 });
 
 app.listen(3000, () => {
-    console.log('Server started at 3004');
+    console.log('Server started at 3000');
 });
