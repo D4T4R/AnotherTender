@@ -138,10 +138,10 @@ section .container .user .formBx form input {
   position: relative;
   width: 100%;
   padding: 10px;
-  background: transparent;
+  background: #ffffff;
   color: #000000;
   border: none;
-  outline:  outset linear-gradient(to right top, #e33636, #eb0053, #e90074, #dc0099, #bf00be, #9d48dd, #6d67f3, #007dff, #00a4ff, #00c5ff, #00e2ff, #5ffbf1);
+  outline: none;
   box-shadow: none;
   margin: 8px 0;
   font-size: 15px;
@@ -153,7 +153,7 @@ section .container .user .formBx form select {
   position: relative;
   width: 100%;
   padding: 10px;
-  background: transparent;
+  background: #ffffff;
   color: #000000;
   border: none;
   outline: none;
@@ -333,25 +333,25 @@ section .container.active .signinBx .imgBx {
             </svg></div>
           <div style="text-align:center" class="formBx">
             <form style="margin-top:-5px; " id ="register" action="/signupbidder" method="POST">
-              <h2 >Contractor Registration</h2>
+              <h2 style="text-align: center;">BIDDER Registration</h2>
               <input style="margin-top:20px" type="text" name="username" placeholder="E-mail ID" />
               <input type="tel" name="contactnumber" placeholder="Contact Number" />
               <br></br>
-              <h2 style="text-align:center"> Company Details</h2><br></br>
+              <h2 style="text-align:center; margin-bottom:10px;"> Company Details</h2>
               <input type="text" name="companyname" placeholder="Company Name/License Holder Name" />
               <input type="text" name="registerationnumber" placeholder="CIN" />
               <input type="text" name="pannumber" placeholder="PAN Number" /><br></br>
-              <label class="mr-sm-2" style="text-align:center" for ="region">Company Registration Date</label>
-                <input type="text" name="dateofbirth" style="margin-bottom:20px; background-color:transparent" placeholder="DD/MM/YYYY" required="required"/>
-              <label class="mr-sm-2" style="position:relative; text-align:center;" for ="region">Choose Region</label>
-                    <select class="custom-select mr-sm-2" style="margin-bottom:20px; background-color:transparent" name="region" id="region">
+              <h2 style="text-align:center" for ="region">Company Registration Date</h2>
+                <input type="text" name="dateofbirth" style="margin-bottom:20px; background-color:#ffffff" placeholder="DDMMYYYY" required="required"/>
+              <h2 style="position:relative; text-align:center; " for ="region">Choose Region</h2>
+                    <select  style="background-color: #ffffff;" class="custom-select mr-sm-2" style="margin-bottom:20px; background-color:transparent" name="region" id="region">
                         <option value="North India">North India</option>
                         <option value="South India">South India</option>
                         <option value="West India">West India</option>
                         <option value="East India">East India</option>
                     </select>
-              <label class="mr-sm-2" style="text-align:center" for ="biddertype">Select Bidder Nationality</label>
-                    <select class="custom-select mr-sm-2" style="margin-bottom:20px; background-color:transparent" name="biddertype" id="biddertype">
+              <h2 style="text-align:center; margin-top:40px;" for ="biddertype">Select Bidder Nationality</h2>
+                    <select style="background-color: #ffffff;" class="custom-select mr-sm-2" style="margin-bottom:20px; background-color:transparent" name="biddertype" id="biddertype">
                         <option value="Indian">Indian</option>
                         <option value="Foreigner">Foreigner</option>
                     </select>
@@ -381,7 +381,7 @@ section .container.active .signinBx .imgBx {
               <input type="tel" name="contactnumber" placeholder="Contact Number" />
               <input type="text" name="governmentidnumber" placeholder="Gov. ID Number" />
               <br></br>
-              <label class="mr-sm-2" style="position:relative; text-align:center;" for ="region">Choose Region</label>
+              <h2 style="position:relative; text-align:center;" for ="region">Choose Region</h2>
                     <select class="custom-select mr-sm-2" style="margin-bottom:20px" name="region" id="region">
                         <option value="North India">North India</option>
                         <option value="South India">South India</option>
