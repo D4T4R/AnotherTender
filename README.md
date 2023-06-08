@@ -80,3 +80,8 @@ Project Contributors
 [Shankar Avad](https://github.com/Shankar247) - Frontend
   
 [Niranjan Patankar](https://github.com/nira07) - Frontend and Design
+
+
+
+
+For more information about this project, Visit [here](https://drive.google.com/drive/folders/0B1QC1GVSb2DJflR2dERPdEpqM1pBSDFBck03NFlZb1BkRGtvTFhIZHJ4Mll0RG5xZF9FYms?resourcekey=0-7v_HsY7djSM2gfWq_jUpGA)
